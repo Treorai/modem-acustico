@@ -6,7 +6,7 @@ if OCTAVE == 1
 pkg load communications;
 end
 
-RB = 400; % taxa de bits (bps)
+RB = 100; % taxa de bits (bps)
 Fp = 2000; 
 Fa = 8000;
 
@@ -45,5 +45,6 @@ x = bi2de(reshape(m,8,l)')';
 msg = char(x);
 disp(["Tamanho da mensagem recebida: " num2str(l) " bytes"]);
 disp(["Mensagem recebida: " msg]);
+
 
 
