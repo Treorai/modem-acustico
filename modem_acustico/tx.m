@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-msg = "OLA"; % mensagem (dados)
+msg = "Comunica os Dados"; % mensagem (dados)
 RB = 100; % taxa de bits (bps)
 Fp = 2000; % frequencia da portadora (2kHz)
 Fa = 8000; % frequencia ou taxa de amostragem (8k amostras/s)

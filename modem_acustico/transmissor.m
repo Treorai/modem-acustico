@@ -39,6 +39,12 @@ msg = [1 0 1 0 0 1 0 1];
 l = 8;
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Cálculo e inserção do CRC-8                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+payload = msg;               % bits da mensagem original
+crc = crc8(payload);         % calcula o CRC-8
+msg = [payload crc];         % adiciona o CRC ao final da mensagem
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Preambulo do quadro                           %
@@ -76,7 +82,7 @@ num = rcosine(RB_f,Fa,'default',r);   % Projeto do filtro RC (raised-cosine filt
 y = rcosflt(y,RB_f,Fa,'filter',num)'; % Filtragem RC
 else % MATLAB
 sps = floor(Fa/TB);
-h = rcosdesign(r, 6, sps);      % Raised cosine FIR filter design 
+h = rcosdesign(r, 6, sps);      % Raised cosine FIR filter design
 %fvtool(h, 'Analysis', 'impulse')   % Visualize the filter
 y = upfirdn(y, h, sps);
 %plot(x)

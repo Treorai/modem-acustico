@@ -7,7 +7,7 @@ pkg load communications;
 end
 
 RB = 100; % taxa de bits (bps)
-Fp = 2000; 
+Fp = 2000;
 Fa = 8000;
 
 on = 0; % controle se opera ou nao em tempo real
@@ -39,6 +39,29 @@ endif
 
 % retorna a mensagem em bits e o tamanho dela
 [m,l] = receptor_2(y, RB, Fp, Fa);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Verificação do CRC-8                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+frame = m; % sequência completa recebida
+disp(['Frame recebido (bits): ' num2str(frame(:)')]);
+
+payload = frame(1:end-8);    % bits sem o CRC
+crc_rx  = frame(end-7:end);  % bits do CRC recebido
+crc_calc = crc8(payload);    % CRC calculado no receptor
+
+disp(['CRC recebido: ' num2str(crc_rx)]);
+disp(['CRC calculado: ' num2str(crc_calc)]);
+
+if isequal(crc_rx, crc_calc)
+    disp('CRC OK: Nenhum erro detectado.');
+else
+    disp('CRC ERRO: Dados corrompidos na recepção.');
+end
+
+
+%%%% Segue o baile
 
 % conversao de bits para texto
 x = bi2de(reshape(m,8,l)')';
