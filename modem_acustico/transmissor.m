@@ -70,7 +70,7 @@ y = s(msg+1);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Numero de simbolos                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-disp(['Tamanho do quadro: ' num2str(length(y)) ' simbolos'])
+%disp(['Tamanho do quadro: ' num2str(length(y)) ' simbolos'])
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Filtragem para formatacao de pulso          %

@@ -48,11 +48,16 @@ frame = m; % sequência completa recebida
 disp(['Frame recebido (bits): ' num2str(frame(:)')]);
 
 payload = frame(1:end-8);    % bits sem o CRC
-crc_rx  = frame(end-7:end);  % bits do CRC recebido
-crc_calc = crc8(payload);    % CRC calculado no receptor
+%payload = payload(:)';       % força linha
 
-disp(['CRC recebido: ' num2str(crc_rx)]);
-disp(['CRC calculado: ' num2str(crc_calc)]);
+crc_rx  = frame(end-7:end)'; % bits do CRC recebido
+disp(['crcrx: ' num2str(crc_rx)]);
+crc_calc = crc8(payload);    % CRC calculado
+disp(['crccalc: ' num2str(crc_calc)]);
+
+
+%disp(['CRC recebido: ' num2str(crc_rx)]);
+%disp(['CRC calculado: ' num2str(crc_calc)]);
 
 if isequal(crc_rx, crc_calc)
     disp('CRC OK: Nenhum erro detectado.');
@@ -64,7 +69,12 @@ end
 %%%% Segue o baile
 
 % conversao de bits para texto
-x = bi2de(reshape(m,8,l)')';
+m = m(:)';                       % força linha
+n_bits = floor(length(m)/8)*8;   % número de bits múltiplo de 8
+m = m(1:n_bits);                 % descarta bits extras
+l = length(m)/8;                 % corrige o tamanho
+x = bi2de(reshape(m,8,l)')';     % conversão
+
 msg = char(x);
 disp(["Tamanho da mensagem recebida: " num2str(l) " bytes"]);
 disp(["Mensagem recebida: " msg]);

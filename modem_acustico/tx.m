@@ -1,3 +1,5 @@
+clear all; clc;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 msg = "Comunica os Dados"; % mensagem (dados)
 RB = 100; % taxa de bits (bps)
@@ -12,8 +14,8 @@ end
 
 [ytx,bits] = transmissor(msg, RB, Fp, Fa);
 
-disp(['Tamanho do quadro: ' num2str(length(bits)) ' bits'])
-disp(['Tamanho do sinal: ' num2str(length(ytx)) ' amostras'])
+%disp(['Tamanho do quadro: ' num2str(length(bits)) ' bits'])
+%disp(['Tamanho do sinal: ' num2str(length(ytx)) ' amostras'])
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Transmissao do sinal usando a placa de som        %
